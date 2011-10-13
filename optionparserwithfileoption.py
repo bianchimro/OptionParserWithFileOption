@@ -6,12 +6,29 @@ class OptionParserWithFileOption(OptionParser):
        to provide parsing options from a file"""
      
     def __init__(self, *ar, **kwar):
-        """just a wrapper for inherited __init__
-           except keyword argument 'filefirst'
-           and adding the default -f option
-           (would be a good idea to parametrize this, 
-           as -f is a fairly common switch ...)"""
-            
+        """
+        just a wrapper for inherited __init__
+        except keyword arguments 'filefirst', 'short_option' and 'long_option'
+        """
+        
+        #the short name for load-from-file option, default -f            
+        if 'short_option' in kwar:
+            self.short_option = kwar['short_option']
+            kwar.pop('short_option')
+        else:
+            self.short_option = '-f'
+
+        #the long name for load-from-file option, default --from-file            
+        if 'long_option' in kwar:
+            self.long_option = kwar['long_option']
+            kwar.pop('long_option')
+        else:
+            self.long_option = '--from-file'
+
+        #the filefirst property indicates if the options text file
+        #should be processed before command line options,
+        #allowing command ling options to override them
+        #arguments list is always extended
         if 'filefirst' in kwar:
             self.filefirst = kwar['filefirst']
             kwar.pop('filefirst')
@@ -19,7 +36,7 @@ class OptionParserWithFileOption(OptionParser):
             self.filefirst = False
              
         OptionParser.__init__(self, *ar, **kwar)
-        self.add_option("-f", "--from-file", 
+        self.add_option(self.short_option, self.long_option, 
                         action="store",  dest="optionsfromfile",
                         help="Loads options from file",
                         default =None)
@@ -52,7 +69,7 @@ class OptionParserWithFileOption(OptionParser):
  
  
     def loadOptionsFromFile(self, filename, commentPrefix="#"):
-        """this simply loads all the lines in a files
+        """loads all the lines in a files
         except those preceded with prefix and concatenates them
         in order to create a new options set """
         try:
