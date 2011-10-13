@@ -1,4 +1,9 @@
-"""an example of parsing options from a file"""
+"""
+A wrapper around OptionParser for parsing options from a file.
+Mauro Bianchi 2011
+bianchimro@gmail.com
+"""
+
 from optparse import OptionParser
  
 class OptionParserWithFileOption(OptionParser):
