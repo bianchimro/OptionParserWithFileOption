@@ -4,7 +4,7 @@ if __name__ == "__main__":
     from optionparserwithfileoption import OptionParserWithFileOption
      
     usage = "Usage: %prog ...."
-    parser = OptionParserWithFileOption(usage, filefirst=True)    
+    parser = OptionParserWithFileOption(usage, filefirst=True, long_option='--options-from-file')    
     parser.add_option("-a", "--another-option", action="store",
                       dest="anotheroption",  help="Another option",  default ='')
     (options, args) = parser.parse_args()    
