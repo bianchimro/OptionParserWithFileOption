@@ -1,7 +1,14 @@
-The idea is adding a new option to option parser (-f or --from-file in my case).
+OptionParserWithFileOption
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A simple python class wrapping optparse.OptionParser, it adds an option enabling to load remainig arguments and options from a text file. Useful if you have python scripts with plenty of options and want to save some typing on the command line.
+
+The idea is adding a new option to option parser.
 
 This option does the following:
 
 It concatenates all the lines of the given text file to create a new string of options
 This set of options built from the text file is appended to the original set of options given at command line,(or viceversa, depending on a precedence setting).
-Obviously the --from-file option must be checked first. At zero cost, I added the possibility to add comment lines to text options file, just to make them more lsverbose and let them seem a lot more like configuration files. This is simply done by ignoring lines that .startswith( ...) your comment delimiter, # in my case.
+Obviously the --from-file option must be checked first. 
+
+At zero cost, I added the possibility to add comment lines to text options file, just to make them more lsverbose and let them seem a lot more like configuration files. This is simply done by ignoring lines that .startswith( ...) your comment delimiter, # in my case.
