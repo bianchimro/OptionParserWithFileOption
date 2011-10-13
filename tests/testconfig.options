@@ -1,0 +1,7 @@
+#the following line will set the -a option
+-a this_is_an_option
+
+this_is_an_argument
+
+#and this is another comment
+#you can freely add empty lines
